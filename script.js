@@ -67,4 +67,63 @@ document.addEventListener('DOMContentLoaded', function() {
             menuContainer.classList.remove('visible');
         }
     });
+});document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- LÓGICA PARA ACTIVAR PESTAÑA DESDE LA URL ---
+    function activateTabFromHash() {
+        const hash = window.location.hash; // Obtiene el # de la URL, ej: "#history"
+        
+        if (hash) {
+            const targetLink = document.querySelector(`.tab-list a[href="${hash}"]`);
+            const targetPanel = document.querySelector(hash);
+
+            if (targetLink && targetPanel) {
+                document.querySelectorAll('.tab-list li.active').forEach(item => item.classList.remove('active'));
+                document.querySelectorAll('.tab-panel.active').forEach(item => item.classList.remove('active'));
+                
+                targetLink.parentElement.classList.add('active');
+                targetPanel.classList.add('active');
+            }
+        }
+    }
+
+    // --- LÓGICA PARA CLIC EN PESTAÑAS ---
+    const tabLinks = document.querySelectorAll('.tab-list a');
+    tabLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            event.preventDefault();
+            const targetPanelId = link.getAttribute('href');
+            
+            document.querySelectorAll('.tab-list li.active').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.tab-panel.active').forEach(item => item.classList.remove('active'));
+            
+            link.parentElement.classList.add('active');
+            document.querySelector(targetPanelId).classList.add('active');
+        });
+    });
+
+    // --- LÓGICA PARA MENÚ DESPLEGABLE ---
+    const menuContainer = document.getElementById('dropdown-menu');
+    const menuButton = document.querySelector('.bttn-all-menu');
+
+    function toggleMenu() {
+        menuContainer.classList.toggle('visible');
+    }
+    
+    if (menuButton) {
+        menuButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
+            toggleMenu();
+        }
+    });
+
+    // --- LLAMAR A LA FUNCIÓN AL CARGAR LA PÁGINA ---
+    activateTabFromHash();
 });
