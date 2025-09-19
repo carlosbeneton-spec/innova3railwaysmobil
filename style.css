@@ -1,0 +1,328 @@
+/* ================================================ */
+/* 1. FONT DEFINITIONS & BASIC RESET                */
+/* ================================================ */
+@font-face {
+    font-family: 'Klavika';
+    src: url('fonts/Klavika-Bold.woff2') format('woff2'),
+         url('fonts/klavika-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Avenir Next Condensed';
+    src: url('fonts/AvenirNextCondensed-Regular.woff2') format('woff2'),
+         url('fonts/AvenirNextCondensed-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Basic Reset */
+html, body, div, span, h1, h2, h3, p, a, img, ul, li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    line-height: 1.5;
+    font-family: 'Avenir Next Condensed', sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+* {
+    box-sizing: border-box;
+}
+
+/* ================================================ */
+/* 2. HEADER                                        */
+/* ================================================ */
+#header {
+    width: 100%;
+    z-index: 31;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px; /* Adjusted padding */
+    width: 100%;
+    background-color: #FAFAFA;
+    position: relative;
+    z-index: 1001;
+}
+.logo-wrap a {
+    display: block;
+}
+.logo-wrap img {
+    height: 40px;
+    width: auto;
+}
+.gnb-wrap {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+.gnb-menu-list {
+    display: flex;
+    list-style: none;
+}
+.gnb-menu-list li a {
+    padding: 40px 15px; /* Adjusted padding */
+    font-size: 16px;
+    color: #353735;
+    font-weight: bold;
+    cursor: pointer;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    color: #353735;
+    font-weight: bold;
+}
+.bttn-lang-sel, .bttn-all-menu {
+    background: none;
+    border: 1px solid #353735;
+    color: #353735;
+    padding: 8px 15px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+/* ================================================ */
+/* 3. HERO SECTION (PAGE VISUAL)                    */
+/* ================================================ */
+.page-visual {
+    height: calc(65vh - 81px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/innova3-hero.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.page-title-sec .title-main-sub {
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+.page-title-sec .title-main {
+    font-family: 'Klavika', sans-serif;
+    font-size: 52px;
+    line-height: 1.2;
+    margin-top: 10px;
+}
+
+/* ================================================ */
+/* 4. SECONDARY NAVIGATION & CONTENT                */
+/* ================================================ */
+.contents-wrap {
+    position: relative;
+}
+.page-tab-section {
+    border-bottom: 1px solid #e0e0e0;
+}
+.tab-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.tab-list a {
+    padding: 20px 30px;
+    display: block;
+    color: #555;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+.tab-list li.active a {
+    color: #000;
+    border-bottom-color: #000;
+}
+.contents {
+    padding: 80px 0;
+    text-align: center;
+}
+.tab-panel {
+    display: none;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.tab-panel.active {
+    display: block;
+}
+.tab-panel h3 {
+    font-family: 'Klavika', sans-serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+.tab-panel p {
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.tab-panel-content {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 60px; 
+}
+
+.tab-panel-image {
+    flex: 1; 
+}
+
+.tab-panel-text {
+    flex: 1; 
+}
+.tab-panel-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.tab-panel-text {
+    flex: 1;
+}
+
+
+/* ================================================ */
+/* 5. DROPDOWN MENU (NEW ALIGNMENT METHOD)          */
+/* ================================================ */
+#dropdown-menu {
+    position: relative;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #FAFAFA;
+    z-index: 1000;
+    overflow: hidden;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease;
+}
+
+#dropdown-menu.visible {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* This container mimics the header's gnb-wrap for spacing */
+.gnb-wrap-mirror {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+/* This list mimics the header's gnb-menu-list for alignment */
+.gnb-menu-list-mirror {
+    display: flex;
+    list-style: none;
+}
+
+/* Each column mimics a header link for perfect alignment */
+.gnb-menu-list-mirror > li {
+    padding: 0 30px; /* MUST BE IDENTICAL to .gnb-menu-list li a horizontal padding */
+}
+
+.sub-menu {
+    list-style: none;
+}
+
+.sub-menu li a {
+    display: block;
+    color: #555;
+    font-size: 16px;
+    line-height: 2;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.sub-menu li a:hover {
+    color: #000;
+}
+
+/* ================================================ */
+/* 6. FOOTER STYLES ADDED                           */
+/* ================================================ */
+#footer {
+    background-color: #353735; /* Dark Blue/Grey */
+    color: #ecf0f1; /* Light Grey Text */
+    padding: 40px 50px 20px 50px;
+    font-family: 'Avenir Next Condensed', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin: 20px;
+}
+
+.footer-column h4 {
+    font-family: 'Klavika', sans-serif;
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #fff;
+    border-bottom: 1px solid #3DB7E4;
+    padding-bottom: 10px;
+}
+
+.footer-column p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-column p i {
+    margin-right: 10px;
+    color: #1abc9c; /* Teal Accent */
+}
+
+.social-icons a {
+    display: inline-block;
+    color: #ecf0f1;
+    background-color: #3DB7E4; /* Slightly Lighter Blue/Grey */
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #FDC82F; /* Teal Accent on hover */
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #3DB7E4;
+    font-size: 14px;
+    color: #95a5a6; /* Softer Grey for copyright */
+}
