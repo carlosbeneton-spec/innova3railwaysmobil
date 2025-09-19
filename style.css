@@ -394,3 +394,75 @@ body {
         font-size: 16px;
     }
 }
+/* ================================================ */
+/* 7. ESTILOS RESPONSIVOS PARA MÓVIL                */
+/* ================================================ */
+
+/* Se aplicará en pantallas de 992px de ancho o menos (tablets y móviles) */
+@media (max-width: 992px) {
+
+    /* 1. Ocultamos el menú principal de escritorio */
+    .gnb-wrap {
+        display: none;
+    }
+
+    /* 2. Ajustamos el header para que haya más espacio */
+    .header-content {
+        padding: 15px;
+    }
+    .logo-wrap img {
+        height: 35px; /* Hacemos el logo un poco más pequeño */
+    }
+
+    /* 3. Transformamos el menú desplegable en un menú lateral */
+    #dropdown-menu {
+        position: fixed; /* Lo fijamos a la pantalla */
+        top: 0;
+        left: 0;
+        width: 85%; /* Que no ocupe toda la pantalla para que se vea la página detrás */
+        max-width: 320px;
+        height: 100vh; /* Toda la altura de la pantalla */
+        background-color: #fff; /* Fondo blanco sólido */
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        padding-top: 60px; /* Espacio para un botón de cierre */
+        
+        /* Animación: por defecto estará oculto a la izquierda */
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+        opacity: 1; /* Aseguramos que sea visible cuando se active */
+        visibility: visible; /* Aseguramos que sea visible cuando se active */
+        max-height: 100vh; /* Permitimos que tenga toda la altura */
+    }
+
+    /* Cuando el menú sea visible, se deslizará desde la izquierda */
+    #dropdown-menu.visible {
+        transform: translateX(0);
+    }
+    
+    /* 4. Reorganizamos las columnas del menú para que sean verticales */
+    .gnb-wrap-mirror {
+        padding: 20px;
+    }
+    
+    .gnb-menu-list-mirror {
+        flex-direction: column; /* Apilamos los elementos verticalmente */
+        align-items: flex-start; /* Alineamos a la izquierda */
+    }
+
+    .gnb-menu-list-mirror > li {
+        padding: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    /* 5. Estilos para los enlaces del menú móvil */
+    .sub-menu li a {
+        font-size: 18px; /* Texto más grande y fácil de tocar */
+        color: #333;
+        font-weight: bold;
+        padding: 10px 0; /* Más espacio vertical */
+    }
+    .sub-menu li a:hover {
+        color: #007bff; /* Un color de realce al tocar */
+    }
+}
