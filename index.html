@@ -6,7 +6,24 @@
     <title>Innova3 - Applied Science for Transportation Infrastructure</title>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
+ <style>
+        /* ESTOS ESTILOS SON SOLO PARA EL MAPA EN ESTA PÁGINA */
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 75%; /* Proporción 4:3 */
+            width: 100%;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
 <body>
     <div id="wrap">
         <header id="header">
@@ -101,7 +118,7 @@
                                 </div>
                                 <div class="tab-panel-text">
                                     <h3>Overview</h3>
-                                    <p>Innova Pavimentos de Mexico is a leading company specializing in quality control laboratories and supervision for construction projects. We are dedicated to applying science and technology to transportation infrastructure, offering innovative solutions in pavement engineering, road safety, and materials analysis. With over 12 years of experience and more than 100 clients, we are committed to delivering high-quality results.</p>
+                                    <p>Innova Pavimentos de Mexico is a leading company specializing in quality control laboratories and supervision for construction projects. We are dedicated to applying science and technology to transportation infrastructure, offering innovative solutions in pavement engineering, road safety, and materials analysis. With over 15 years of experience and more than 100 clients, we are committed to delivering high-quality results and ensuring the satisfaction of our clients.</p>
                                 </div>
                             </div>
                         </div>
@@ -138,21 +155,24 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="contact-us" class="tab-panel">
-                            <div class="tab-panel-content">
+                 <div id="contact-us" class="tab-panel">
+                            <div class="tab-panel-content" style="align-items: flex-start;">
                                 <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Contact Us Image">
+                                    <div class="map-container">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1150.7684430214601!2d-98.2962609700391!3d19.081062130879378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc6d6c746b951%3A0x953a60aa00ed39cd!2sInnova%20Pavements%20Mexico!5e0!3m2!1sen!2smx!4v1758388201778!5m2!1sen!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
                                 </div>
                                 <div class="tab-panel-text">
                                     <h3>Contact Us</h3>
                                     <p>
-                                        <strong>Address:</strong> Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br>
-                                        <strong>Phone:</strong> +52 (222) 627 9265<br>
-                                        <strong>Email:</strong> ventas@innova3.com.mx<br>
-                                        <strong>Website:</strong> www.innova3.com.mx
+                                        <strong>Address:</strong><br>
+                                        Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br><br>
+                                        <strong>Phone:</strong><br>
+                                        +52 (222) 627 9265<br><br>
+                                        <strong>Email:</strong><br>
+                                        ventas@innova3.com.mx
                                     </p>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
