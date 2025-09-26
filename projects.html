@@ -3,16 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innova3 - Applied Science for Transportation Infrastructure</title>
+    <title>Projects - Innova3</title>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
+    <style>
+        /* Estilos para la galería de imágenes */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #fff;
+        }
+    </style>
+</head>
 <body>
     <div id="wrap">
         <header id="header">
             <div class="header-content">
                 <h1 class="logo-wrap">
-                    <a href="#">
+                    <a href="index.html">
                         <img src="images/logo.png" alt="Innova3 Logo">
                     </a>
                 </h1>
@@ -34,7 +49,7 @@
                     </span>
                 </div>
             </div>
-           <div id="dropdown-menu">
+            <div id="dropdown-menu">
     <div class="gnb-wrap-mirror">
         <ul class="gnb-menu-list-mirror">
             <li></li> <li>
@@ -55,17 +70,55 @@
                 </ul>
             </li>
                         <li>
-                            <ul class="sub-menu">
-                                <li><a href="featured-projects.html">Featured Projects</a></li>
-                                <li><a href="case-studies.html">Case Studies</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
+                              <ul class="sub-menu">
+                                <li><a href="projects.html#featured-projects">Featured Projects</a></li>
+                                <li><a href="projects.html#rd">R&D</a></li>
+                                <li><a href="projects.html#gallery">Gallery</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                         <ul class="sub-menu">
+                                <li><a href="contact.html#contact-info">Contact Information</a></li>
+                                <li><a href="contact.html#request-quote">Request a Quote</a></li>
+                                <li><a href="contact.html#locations">Locations</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+ <div id="dropdown-menu">
+    <div class="gnb-wrap-mirror">
+        <ul class="gnb-menu-list-mirror">
+            <li></li> <li>
+                <ul class="sub-menu">
+                    <li><a href="about-us.html#vision">Vision</a></li>
+                    <li><a href="about-us.html#history">History</a></li>
+                    <li><a href="about-us.html#careers">Careers</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <ul class="sub-menu">
+                    <li><a href="services.html#ultrasonic">Ultrasonic Rail Testing</a></li>
+                    <li><a href="services.html#performance">Operational Performance and Safety</a></li>
+                    <li><a href="services.html#track-health">Track Health and Integrity</a></li>
+                    <li><a href="services.html#ground-evaluation">Ground Evaluation</a></li>
+                    <li><a href="services.html#quality-assurance">Quality Assurance</a></li>
+                </ul>
+            </li>
+                        <li>
+                              <ul class="sub-menu">
+                                <li><a href="projects.html#featured-projects">Featured Projects</a></li>
+                                <li><a href="projects.html#rd">R&D</a></li>
+                                <li><a href="projects.html#gallery">Gallery</a></li>
                             </ul>
                         </li>
                         <li>
                             <ul class="sub-menu">
-                                <li><a href="contact-information.html">Contact Information</a></li>
-                                <li><a href="request-a-quote.html">Request a Quote</a></li>
-                                <li><a href="locations.html">Locations</a></li>
+                                <li><a href="contact.html#contact-information">Contact Information</a></li>
+                                <li><a href="contact.html#request-quote">Request a Quote</a></li>
+                                <li><a href="contact.html#locations">Locations</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -75,81 +128,56 @@
 
         <div id="container">
             <div id="content">
-                <div class="page-visual">
+                <div class="page-visual" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/innova3-hero.jpg');">
                     <div class="page-title-sec">
-                        <span class="title-main-sub">INNOVATIVE SOLUTIONS</span>
-                        <h2 class="title-main">Applied Science for<br>Smarter Railways</h2>
+                        <span class="title-main-sub">OUR WORK</span>
+                        <h2 class="title-main">Case Studies and Innovations</h2>
                     </div>
                 </div>
 
                 <div class="contents-wrap">
                     <div class="page-tab-section">
                         <ul class="tab-list">
-                            <li class="active"><a href="#overview" data-tab="overview">Featured Projects</a></li>
-                            <li><a href="#vision" data-tab="vision">Case Studies</a></li>
-                            <li><a href="#history" data-tab="history">Gallery</a></li>
+                            <li class="active"><a href="#featured-projects" data-tab="featured-projects">Featured Projects</a></li>
+                            <li><a href="#rd" data-tab="rd">R&D</a></li>
+                            <li><a href="#gallery" data-tab="gallery">Gallery</a></li>
                         </ul>
                     </div>
 
                     <div class="contents">
-                        <div id="overview" class="tab-panel active">
+                        <div id="featured-projects" class="tab-panel active">
                             <div class="tab-panel-content">
                                 <div class="tab-panel-image">
-                                    <img src="images/overrieles.jpeg" alt="Overview Image">
+                                    <img src="https://via.placeholder.com/300x200" alt="Featured Project">
                                 </div>
                                 <div class="tab-panel-text">
-                                    <h3>Overview</h3>
-                                    <p>Innova Pavimentos de Mexico is a leading company specializing in quality control laboratories and supervision for construction projects. We are dedicated to applying science and technology to transportation infrastructure, offering innovative solutions in pavement engineering, road safety, and materials analysis. With over 12 years of experience and more than 100 clients, we are committed to delivering high-quality results and ensuring the satisfaction of our clients.</p>
+                                    <h3>High-Speed Rail Corridor Assessment</h3>
+                                    <p>We conducted a comprehensive track health and integrity assessment for a major high-speed rail corridor. Using ultrasonic testing and GPR, we identified critical internal defects and subgrade instabilities, allowing for targeted preventative maintenance that prevented costly service disruptions and enhanced passenger safety.</p>
                                 </div>
                             </div>
                         </div>
-                        <div id="vision" class="tab-panel">
+
+                        <div id="rd" class="tab-panel">
                             <div class="tab-panel-content">
                                 <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Vision Image">
+                                    <img src="https://via.placeholder.com/300x200" alt="Research and Development">
                                 </div>
                                 <div class="tab-panel-text">
-                                    <h3>Vision</h3>
-                                    <p>Our vision is to be a leading and prestigious organization in the evaluation of the quality of road engineering projects and studies. We aim to be efficient in our technical and administrative processes, with a high level of responsiveness to our clients. We strive to be the leading construction group for industrial and commercial projects in the region by 2030.</p>
-                                 </div>
-                            </div>
-                        </div>
-                        <div id="history" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="History Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>History</h3>
-                                    <p>Our company has a rich history of innovation and excellence in the field of pavement engineering. Since our founding, we have been committed to providing our clients with the highest quality services and solutions. We have grown from a small team of dedicated engineers to a leading firm with a reputation for excellence. We are proud of our accomplishments and look forward to continuing to serve our clients for many years to come.</p>
+                                    <h3>Research & Development (R&D)</h3>
+                                    <p>Innovation is at the core of our identity. Our R&D department is dedicated to developing the next generation of infrastructure assessment tools. We are currently focused on integrating artificial intelligence with sensor data to create predictive models that can forecast rail degradation with unprecedented accuracy.</p>
                                 </div>
                             </div>
                         </div>
-                        <div id="join-our-team" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Join Our Team Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>Join Our Team</h3>
-                                    <p>We are always looking for talented and motivated individuals to join our team. If you are passionate about making a difference in the world of transportation infrastructure, we encourage you to apply. We offer a dynamic and challenging work environment where you will have the opportunity to grow and develop your skills. To apply, please send your resume and cover letter to sgc@innova3.com.mx.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="contact-us" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Contact Us Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>Contact Us</h3>
-                                    <p>
-                                        <strong>Address:</strong> Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br>
-                                        <strong>Phone:</strong> +52 (222) 627 9265<br>
-                                        <strong>Email:</strong> ventas@innova3.com.mx<br>
-                                        <strong>Website:</strong> www.innova3.com.mx
-                                    </p>
-                                </div>
+
+                        <div id="gallery" class="tab-panel">
+                            <h3 style="text-align: center; font-family: 'Klavika', sans-serif; font-size: 32px; margin-bottom: 30px;">Project Gallery</h3>
+                            <div class="gallery-grid">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 1">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 2">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 3">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 4">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 5">
+                                <img src="https://via.placeholder.com/400x300" alt="Gallery Image 6">
                             </div>
                         </div>
                     </div>

@@ -3,16 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innova3 - Applied Science for Transportation Infrastructure</title>
+    <title>Contact - Innova3</title>
     <link href="style.css" type="text/css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
+    <style>
+        /* Estilos para el mapa y el formulario */
+        .map-container {
+            position: relative; overflow: hidden; padding-top: 75%; width: 100%;
+        }
+        .map-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+        .quote-form {
+            display: flex; flex-direction: column; gap: 20px; text-align: left; max-width: 800px; margin: auto;
+        }
+        .quote-form input, .quote-form textarea {
+            padding: 12px; border: 1px solid #ccc; font-family: inherit; font-size: 16px;
+        }
+        .quote-form button {
+            padding: 15px; background-color: #333; color: white; border: none; cursor: pointer; font-size: 16px; font-weight: bold;
+        }
+    </style>
+</head>
 <body>
     <div id="wrap">
         <header id="header">
             <div class="header-content">
                 <h1 class="logo-wrap">
-                    <a href="#">
+                    <a href="index.html">
                         <img src="images/logo.png" alt="Innova3 Logo">
                     </a>
                 </h1>
@@ -34,7 +52,7 @@
                     </span>
                 </div>
             </div>
-            <div id="dropdown-menu">
+             <div id="dropdown-menu">
     <div class="gnb-wrap-mirror">
         <ul class="gnb-menu-list-mirror">
             <li></li> <li>
@@ -55,17 +73,17 @@
                 </ul>
             </li>
                         <li>
-                            <ul class="sub-menu">
-                                <li><a href="featured-projects.html">Featured Projects</a></li>
-                                <li><a href="case-studies.html">Case Studies</a></li>
-                                <li><a href="gallery.html">Gallery</a></li>
+                              <ul class="sub-menu">
+                                <li><a href="projects.html#featured-projects">Featured Projects</a></li>
+                                <li><a href="projects.html#rd">R&D</a></li>
+                                <li><a href="projects.html#gallery">Gallery</a></li>
                             </ul>
                         </li>
                         <li>
-                            <ul class="sub-menu">
-                                <li><a href="contact-information.html">Contact Information</a></li>
-                                <li><a href="request-a-quote.html">Request a Quote</a></li>
-                                <li><a href="locations.html">Locations</a></li>
+                           <ul class="sub-menu">
+                                <li><a href="contact.html#contact-info">Contact Information</a></li>
+                                <li><a href="contact.html#request-quote">Request a Quote</a></li>
+                                <li><a href="contact.html#locations">Locations</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -75,79 +93,71 @@
 
         <div id="container">
             <div id="content">
-                <div class="page-visual">
+                <div class="page-visual" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/innova3-hero.jpg');">
                     <div class="page-title-sec">
-                        <span class="title-main-sub">INNOVATIVE SOLUTIONS</span>
-                        <h2 class="title-main">Applied Science for<br>Smarter Railways</h2>
+                        <span class="title-main-sub">GET IN TOUCH</span>
+                        <h2 class="title-main">Contact Us</h2>
                     </div>
                 </div>
 
                 <div class="contents-wrap">
                     <div class="page-tab-section">
                         <ul class="tab-list">
-                            <li class="active"><a href="#overview" data-tab="overview">Contact Information</a></li>
-                            <li><a href="#vision" data-tab="vision">Request a Quote</a></li>
-                            <li><a href="#history" data-tab="history">Locations</a></li>
+                            <li class="active"><a href="#contact-info" data-tab="contact-info">Contact Information</a></li>
+                            <li><a href="#request-quote" data-tab="request-quote">Request a Quote</a></li>
+                            <li><a href="#locations" data-tab="locations">Locations</a></li>
                         </ul>
                     </div>
 
                     <div class="contents">
-                        <div id="overview" class="tab-panel active">
+                        <div id="contact-info" class="tab-panel active">
                             <div class="tab-panel-content">
                                 <div class="tab-panel-image">
-                                    <img src="images/overrieles.jpeg" alt="Overview Image">
+                                    <img src="images/i3personal.jpg" alt="Contact">
                                 </div>
                                 <div class="tab-panel-text">
-                                    <h3>Overview</h3>
-                                    <p>Innova Pavimentos de Mexico is a leading company specializing in quality control laboratories and supervision for construction projects. We are dedicated to applying science and technology to transportation infrastructure, offering innovative solutions in pavement engineering, road safety, and materials analysis. With over 12 years of experience and more than 100 clients, we are committed to delivering high-quality results and ensuring the satisfaction of our clients.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="vision" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Vision Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>Vision</h3>
-                                    <p>Our vision is to be a leading and prestigious organization in the evaluation of the quality of road engineering projects and studies. We aim to be efficient in our technical and administrative processes, with a high level of responsiveness to our clients. We strive to be the leading construction group for industrial and commercial projects in the region by 2030.</p>
-                                 </div>
-                            </div>
-                        </div>
-                        <div id="history" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="History Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>History</h3>
-                                    <p>Our company has a rich history of innovation and excellence in the field of pavement engineering. Since our founding, we have been committed to providing our clients with the highest quality services and solutions. We have grown from a small team of dedicated engineers to a leading firm with a reputation for excellence. We are proud of our accomplishments and look forward to continuing to serve our clients for many years to come.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="join-our-team" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Join Our Team Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>Join Our Team</h3>
-                                    <p>We are always looking for talented and motivated individuals to join our team. If you are passionate about making a difference in the world of transportation infrastructure, we encourage you to apply. We offer a dynamic and challenging work environment where you will have the opportunity to grow and develop your skills. To apply, please send your resume and cover letter to sgc@innova3.com.mx.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="contact-us" class="tab-panel">
-                            <div class="tab-panel-content">
-                                <div class="tab-panel-image">
-                                    <img src="https://via.placeholder.com/300x200" alt="Contact Us Image">
-                                </div>
-                                <div class="tab-panel-text">
-                                    <h3>Contact Us</h3>
+                                    <h3>Contact Information</h3>
                                     <p>
-                                        <strong>Address:</strong> Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br>
-                                        <strong>Phone:</strong> +52 (222) 627 9265<br>
-                                        <strong>Email:</strong> ventas@innova3.com.mx<br>
-                                        <strong>Website:</strong> www.innova3.com.mx
+                                        <strong>Address:</strong><br>
+                                        Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br><br>
+                                        <strong>Phone:</strong><br>
+                                        +52 (222) 627 9265<br><br>
+                                        <strong>Email:</strong><br>
+                                        ventas@innova3.com.mx
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="request-quote" class="tab-panel">
+                            <h3 style="text-align: center; font-family: 'Klavika', sans-serif; font-size: 32px; margin-bottom: 30px;">Request a Quote</h3>
+                            <form class="quote-form">
+                                <label for="name">Your Name:</label>
+                                <input type="text" id="name" name="name" required>
+                                <label for="email">Your Email:</label>
+                                <input type="email" id="email" name="email" required>
+                                <label for="service">Service of Interest:</label>
+                                <input type="text" id="service" name="service">
+                                <label for="project-details">Tell us about your project:</label>
+                                <textarea id="project-details" name="project-details" rows="5" required></textarea>
+                                <button type="submit">Submit Request</button>
+                            </form>
+                        </div>
+
+                        <div id="locations" class="tab-panel">
+                            <div class="tab-panel-content" style="align-items: flex-start;">
+                                <div class="tab-panel-image">
+                                    <div class="map-container">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.163353594191!2d-98.2778508248316!3d19.10034618209865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc6c8022a104b%3A0x4461a3b499113284!2sInnova3!5e0!3m2!1ses-419!2smx!4v1726858000000!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                                <div class="tab-panel-text">
+                                    <h3>Our Main Office</h3>
+                                    <p>
+                                        <strong>Address:</strong><br>
+                                        Carretera estatal Coronango Ext. 303. Col. Cuautlancingo. Puebla pue. C.P: 72705<br><br>
+                                        <strong>Phone:</strong><br>
+                                        +52 (222) 627 9265
                                     </p>
                                 </div>
                             </div>
