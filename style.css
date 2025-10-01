@@ -220,7 +220,6 @@ body {
     visibility: visible;
 }
 
-/* This container mimics the header's gnb-wrap for spacing */
 .gnb-wrap-mirror {
     flex-grow: 1;
     display: flex;
@@ -228,19 +227,23 @@ body {
     padding: 20px 0;
 }
 
-/* This list mimics the header's gnb-menu-list for alignment */
 .gnb-menu-list-mirror {
     display: flex;
     list-style: none;
 }
 
-/* Each column mimics a header link for perfect alignment */
 .gnb-menu-list-mirror > li {
-    padding: 0 30px; /* MUST BE IDENTICAL to .gnb-menu-list li a horizontal padding */
+    padding: 0 30px;
 }
 
+/* ================================================ */
+/* ESTE ES EL CAMBIO - APLICA A TODOS LOS TAMAÑOS   */
+/* ================================================ */
 .sub-menu {
     list-style: none;
+    margin-top: 15px; /* Espacio entre el título (si lo hubiera) y el divisor */
+    padding-top: 15px; /* Espacio entre el divisor y los sub-enlaces */
+    border-top: 1px solid #e0e0e0; /* La línea divisoria gris, funciona en fondo claro */
 }
 
 .sub-menu li a {
@@ -260,8 +263,8 @@ body {
 /* 6. FOOTER STYLES ADDED                           */
 /* ================================================ */
 #footer {
-    background-color: #353735; /* Dark Blue/Grey */
-    color: #ecf0f1; /* Light Grey Text */
+    background-color: #353735;
+    color: #ecf0f1;
     padding: 40px 50px 20px 50px;
     font-family: 'Avenir Next Condensed', sans-serif;
 }
@@ -298,13 +301,13 @@ body {
 
 .footer-column p i {
     margin-right: 10px;
-    color: #1abc9c; /* Teal Accent */
+    color: #1abc9c;
 }
 
 .social-icons a {
     display: inline-block;
     color: #ecf0f1;
-    background-color: #0076A8; /* Slightly Lighter Blue/Grey */
+    background-color: #0076A8;
     width: 40px;
     height: 40px;
     line-height: 40px;
@@ -315,7 +318,7 @@ body {
 }
 
 .social-icons a:hover {
-    background-color: #FDC82F; /* Teal Accent on hover */
+    background-color: #FDC82F;
     color: #fff;
 }
 
@@ -324,7 +327,7 @@ body {
     padding-top: 20px;
     border-top: 1px solid #0076A8;
     font-size: 14px;
-    color: #95a5a6; /* Softer Grey for copyright */
+    color: #95a5a6;
 }
 
 /* ================================================ */
@@ -337,6 +340,55 @@ body {
     }
     .gnb-menu-list-mirror > li {
         padding: 0 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    #dropdown-menu {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow-y: auto;
+        z-index: 2000;
+    }
+    .gnb-wrap-mirror { padding: 20px; }
+    .gnb-menu-list-mirror { flex-direction: column; align-items: center; }
+    .gnb-menu-list-mirror > li { padding: 0; width: 100%; margin-bottom: 25px; }
+    
+    .main-menu-link {
+        font-family: 'Klavika', sans-serif;
+        font-size: 24px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* ESTE ES EL CAMBIO - SOBREESCRIBE EL COLOR DEL DIVISOR PARA EL MÓVIL */
+    #dropdown-menu .sub-menu {
+        border-top-color: rgba(255, 255, 255, 0.2); /* Color más claro para el fondo oscuro */
+    }
+
+    #dropdown-menu .sub-menu li a {
+        font-size: 16px;
+        color: #ccc;
+    }
+    #dropdown-menu .sub-menu li a:hover { color: #FDC82F; }
+
+    #dropdown-menu::before {
+        content: '×';
+        position: fixed;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: #fff;
+        cursor: pointer;
     }
 }
 
@@ -395,94 +447,12 @@ body {
     }
 }
 /* ================================================ */
-/* 7. ESTILOS RESPONSIVOS PARA MENÚ MÓVIL (MEJORADO) */
+/* OCULTAR TÍTULOS DEL MENÚ MÓVIL EN ESCRITORIO     */
 /* ================================================ */
 
-@media (max-width: 992px) {
-
-    /* Ocultamos el menú principal de escritorio */
-    .gnb-wrap {
+/* Se aplica solo a pantallas de 993px o más */
+@media (min-width: 993px) {
+    .mobile-main-link {
         display: none;
-    }
-
-    /* Transformamos el menú desplegable en una superposición de pantalla completa */
-    #dropdown-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.95);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        overflow-y: auto;
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
-        z-index: 2000;
-    }
-
-    #dropdown-menu.visible {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .gnb-wrap-mirror {
-        padding: 20px;
-    }
-    
-    .gnb-menu-list-mirror {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .gnb-menu-list-mirror > li {
-        padding: 0;
-        width: 100%;
-        margin-bottom: 25px;
-    }
-    
-    /* Estilos para los enlaces principales (HOME, ABOUT US, etc.) */
-    .main-menu-link {
-        font-family: 'Klavika', sans-serif;
-        font-size: 24px;
-        color: #fff;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        display: block;
-    }
-    
-    /* ================================================ */
-    /* ESTA ES LA SECCIÓN NUEVA CON EL DIVISOR */
-    /* ================================================ */
-    .sub-menu {
-        margin-top: 15px; /* Espacio entre el título y el divisor */
-        padding-top: 15px; /* Espacio entre el divisor y los sub-enlaces */
-        border-top: 1px solid rgba(255, 255, 255, 0.2); /* La línea divisoria sutil */
-    }
-
-    .sub-menu li a {
-        font-size: 16px;
-        color: #ccc;
-        padding: 8px 0;
-        display: block;
-        transition: color 0.3s ease;
-    }
-    .sub-menu li a:hover {
-        color: #FDC82F;
-    }
-
-    /* Botón de cierre */
-    #dropdown-menu::before {
-        content: '×';
-        position: fixed;
-        top: 20px;
-        right: 30px;
-        font-size: 40px;
-        color: #fff;
-        cursor: pointer;
     }
 }
