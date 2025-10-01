@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- SECCIÓN 1: LÓGICA DE MENÚS (CORREGIDA) ---
+    // --- SECCIÓN 1: LÓGICA DE MENÚS (UNIFICADA Y CORREGIDA) ---
     const header = document.getElementById('header');
     const menuContainer = document.getElementById('dropdown-menu');
     const menuButton = document.querySelector('.bttn-all-menu');
@@ -20,22 +20,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // -- Lógica para el botón "MENU" (funciona con clic en todas las pantallas) --
+    // -- Lógica para el botón "MENU" (funciona con clic en TODAS las pantallas) --
     if (menuButton) {
         menuButton.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+            // Simplemente alterna la visibilidad del menú
             menuContainer.classList.contains('visible') ? hideDropdown() : showDropdown();
         });
     }
 
-    // -- Lógica de HOVER solo para computadora --
+    // -- Lógica de HOVER (solo para computadora) --
     desktopMenuTriggers.forEach(trigger => {
+        // Excluye 'HOME' de abrir el menú con hover
         if (trigger.textContent.trim().toUpperCase() === 'HOME') {
             return;
         }
         trigger.addEventListener('mouseover', function() {
-            if (window.innerWidth > 992) { // Solo en pantallas de computadora
+            if (window.innerWidth > 992) { // Revisa que sea una pantalla de computadora
                 showDropdown();
             }
         });
@@ -50,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Cierra con clic fuera (importante para que funcione en móvil)
+    // Cierra con clic fuera (importante para que el botón de cierre "X" en móvil funcione)
     document.addEventListener('click', function(e) {
         if (menuContainer && menuContainer.classList.contains('visible') && !header.contains(e.target)) {
             hideDropdown();
