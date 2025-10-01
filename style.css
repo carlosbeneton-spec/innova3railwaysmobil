@@ -395,64 +395,83 @@ body {
     }
 }
 /* ================================================ */
-/* 7. ESTILOS RESPONSIVOS PARA MENÚ MÓVIL           */
+/* ================================================ */
+/* 7. ESTILOS RESPONSIVOS PARA MENÚ MÓVIL (MEJORADO) */
 /* ================================================ */
 
-/* Se aplicará en pantallas de 992px de ancho o menos (tablets y móviles) */
 @media (max-width: 992px) {
 
-    /* 1. Transformamos el menú desplegable en un panel lateral */
-    #dropdown-menu {
-        position: fixed; /* Lo fijamos a la pantalla, no a la cabecera */
-        top: 0;
-        left: 0;
-        width: 85%; /* Que ocupe casi toda la pantalla */
-        max-width: 320px; /* Pero con un máximo para que no sea gigante en tablets */
-        height: 100vh; /* Toda la altura de la pantalla */
-        background-color: #fff; /* Fondo blanco sólido */
-        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
-        padding-top: 80px; /* Espacio para un botón de cierre (opcional) */
-        
-        /* Habilitamos el scroll vertical si el contenido es muy largo */
-        overflow-y: auto; 
-        
-        /* Animación: por defecto estará oculto a la izquierda */
-        transform: translateX(-100%);
-        transition: transform 0.4s ease;
-        opacity: 1;
-        visibility: visible;
-        max-height: 100vh; /* Le permitimos usar toda la altura */
+    /* 1. Ocultamos el menú principal de escritorio */
+    .gnb-wrap {
+        display: none;
     }
 
-    /* Cuando el menú sea visible, se deslizará desde la izquierda */
+    /* 2. Transformamos el menú desplegable en una superposición de pantalla completa */
+    #dropdown-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%; /* Ocupa todo el ancho */
+        height: 100%; /* Ocupa toda la altura */
+        background-color: rgba(0, 0, 0, 0.95); /* Fondo oscuro semitransparente */
+        backdrop-filter: blur(10px); /* Efecto de desenfoque para un look moderno */
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        
+        overflow-y: auto; /* Permite scroll si hay muchos enlaces */
+        
+        /* Animación: Por defecto está invisible */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
+        z-index: 2000; /* Asegura que esté por encima de todo */
+    }
+
     #dropdown-menu.visible {
-        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
     
-    /* 2. Reorganizamos las columnas del menú para que sean verticales */
+    /* 3. Reorganizamos las columnas del menú */
     .gnb-wrap-mirror {
         padding: 20px;
     }
     
     .gnb-menu-list-mirror {
-        flex-direction: column; /* Apilamos los elementos verticalmente */
-        align-items: flex-start; /* Alineamos a la izquierda */
+        flex-direction: column;
+        align-items: center;
     }
 
     .gnb-menu-list-mirror > li {
         padding: 0;
         width: 100%;
-        margin-bottom: 25px; /* Más espacio entre grupos de enlaces */
+        margin-bottom: 30px;
     }
     
-    /* 3. Estilos para los enlaces del menú móvil */
+    /* 4. Estilos para los enlaces del menú móvil */
     .sub-menu li a {
-        font-size: 18px; /* Texto más grande y fácil de tocar */
-        color: #333;
+        font-size: 22px; /* Letra más grande */
+        color: #fff; /* Color blanco para que resalte */
         font-weight: bold;
-        padding: 12px 0; /* Más espacio vertical */
+        padding: 15px 0;
+        display: block;
+        transition: color 0.3s ease;
     }
     .sub-menu li a:hover {
-        color: #007bff; /* Un color de realce al tocar */
+        color: #FDC82F; /* Color de acento al pasar el mouse */
+    }
+
+    /* 5. Creamos un botón de cierre con CSS */
+    #dropdown-menu::before {
+        content: '×'; /* Símbolo de "X" */
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: #fff;
+        cursor: pointer;
     }
 }
