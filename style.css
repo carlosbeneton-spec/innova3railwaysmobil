@@ -395,39 +395,34 @@ body {
     }
 }
 /* ================================================ */
-/* ================================================ */
 /* 7. ESTILOS RESPONSIVOS PARA MENÚ MÓVIL (MEJORADO) */
 /* ================================================ */
 
 @media (max-width: 992px) {
 
-    /* 1. Ocultamos el menú principal de escritorio */
+    /* Ocultamos el menú principal de escritorio */
     .gnb-wrap {
         display: none;
     }
 
-    /* 2. Transformamos el menú desplegable en una superposición de pantalla completa */
+    /* Transformamos el menú desplegable en una superposición de pantalla completa */
     #dropdown-menu {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%; /* Ocupa todo el ancho */
-        height: 100%; /* Ocupa toda la altura */
-        background-color: rgba(0, 0, 0, 0.95); /* Fondo oscuro semitransparente */
-        backdrop-filter: blur(10px); /* Efecto de desenfoque para un look moderno */
-        
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        
-        overflow-y: auto; /* Permite scroll si hay muchos enlaces */
-        
-        /* Animación: Por defecto está invisible */
+        overflow-y: auto;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.4s ease, visibility 0.4s ease;
-        z-index: 2000; /* Asegura que esté por encima de todo */
+        z-index: 2000;
     }
 
     #dropdown-menu.visible {
@@ -435,7 +430,6 @@ body {
         visibility: visible;
     }
     
-    /* 3. Reorganizamos las columnas del menú */
     .gnb-wrap-mirror {
         padding: 20px;
     }
@@ -448,26 +442,43 @@ body {
     .gnb-menu-list-mirror > li {
         padding: 0;
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
     
-    /* 4. Estilos para los enlaces del menú móvil */
+    /* Estilos para los enlaces principales (HOME, ABOUT US, etc.) */
+    .main-menu-link {
+        font-family: 'Klavika', sans-serif;
+        font-size: 24px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: block;
+    }
+    
+    /* ================================================ */
+    /* ESTA ES LA SECCIÓN NUEVA CON EL DIVISOR */
+    /* ================================================ */
+    .sub-menu {
+        margin-top: 15px; /* Espacio entre el título y el divisor */
+        padding-top: 15px; /* Espacio entre el divisor y los sub-enlaces */
+        border-top: 1px solid rgba(255, 255, 255, 0.2); /* La línea divisoria sutil */
+    }
+
     .sub-menu li a {
-        font-size: 22px; /* Letra más grande */
-        color: #fff; /* Color blanco para que resalte */
-        font-weight: bold;
-        padding: 15px 0;
+        font-size: 16px;
+        color: #ccc;
+        padding: 8px 0;
         display: block;
         transition: color 0.3s ease;
     }
     .sub-menu li a:hover {
-        color: #FDC82F; /* Color de acento al pasar el mouse */
+        color: #FDC82F;
     }
 
-    /* 5. Creamos un botón de cierre con CSS */
+    /* Botón de cierre */
     #dropdown-menu::before {
-        content: '×'; /* Símbolo de "X" */
-        position: absolute;
+        content: '×';
+        position: fixed;
         top: 20px;
         right: 30px;
         font-size: 40px;
