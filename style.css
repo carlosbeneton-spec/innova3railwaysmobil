@@ -51,7 +51,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px; /* Adjusted padding */
+    padding: 20px;
     width: 100%;
     background-color: #FAFAFA;
     position: relative;
@@ -74,7 +74,7 @@ body {
     list-style: none;
 }
 .gnb-menu-list li a {
-    padding: 40px 15px; /* Adjusted padding */
+    padding: 40px 15px;
     font-size: 16px;
     color: #353735;
     font-weight: bold;
@@ -99,7 +99,7 @@ body {
 /* 3. HERO SECTION (PAGE VISUAL)                    */
 /* ================================================ */
 .page-visual {
-    height: calc(65vh - 81px);
+    height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,7 +147,7 @@ body {
     border-bottom-color: #000;
 }
 .contents {
-    padding: 80px 0;
+    padding-top: 40px;
     text-align: center;
 }
 .tab-panel {
@@ -168,18 +168,15 @@ body {
     font-size: 18px;
     line-height: 1.7;
 }
-
 .tab-panel-content {
     display: flex;
     align-items: center;
     text-align: left;
     gap: 60px; 
 }
-
 .tab-panel-image {
     flex: 1; 
 }
-
 .tab-panel-text {
     flex: 1; 
 }
@@ -189,13 +186,8 @@ body {
     display: block;
 }
 
-.tab-panel-text {
-    flex: 1;
-}
-
-
 /* ================================================ */
-/* 5. DROPDOWN MENU (NEW ALIGNMENT METHOD)          */
+/* 5. DROPDOWN MENU                                 */
 /* ================================================ */
 #dropdown-menu {
     position: relative;
@@ -215,7 +207,7 @@ body {
 }
 
 #dropdown-menu.visible {
-    max-height: 500px;
+    max-height: 100vh; /* Usa la altura de la pantalla para asegurar que todo quepa */
     opacity: 1;
     visibility: visible;
 }
@@ -236,14 +228,8 @@ body {
     padding: 0 30px;
 }
 
-/* ================================================ */
-/* ESTE ES EL CAMBIO - APLICA A TODOS LOS TAMAÑOS   */
-/* ================================================ */
 .sub-menu {
     list-style: none;
-    margin-top: 15px; /* Espacio entre el título (si lo hubiera) y el divisor */
-    padding-top: 15px; /* Espacio entre el divisor y los sub-enlaces */
-    border-top: 1px solid #e0e0e0; /* La línea divisoria gris, funciona en fondo claro */
 }
 
 .sub-menu li a {
@@ -259,16 +245,19 @@ body {
     color: #000;
 }
 
+/* Oculta los enlaces principales del menú móvil por defecto */
+.mobile-main-link {
+    display: none;
+}
+
 /* ================================================ */
-/* 6. FOOTER STYLES ADDED                           */
+/* 6. FOOTER                                        */
 /* ================================================ */
 #footer {
     background-color: #353735;
     color: #ecf0f1;
     padding: 40px 50px 20px 50px;
-    font-family: 'Avenir Next Condensed', sans-serif;
 }
-
 .footer-container {
     display: flex;
     justify-content: space-between;
@@ -277,13 +266,11 @@ body {
     margin: 0 auto;
     padding-bottom: 20px;
 }
-
 .footer-column {
     flex: 1;
     min-width: 250px;
     margin: 20px;
 }
-
 .footer-column h4 {
     font-family: 'Klavika', sans-serif;
     font-size: 18px;
@@ -292,18 +279,15 @@ body {
     border-bottom: 1px solid #0076A8;
     padding-bottom: 10px;
 }
-
 .footer-column p {
     font-size: 15px;
     line-height: 1.6;
     margin-bottom: 10px;
 }
-
 .footer-column p i {
     margin-right: 10px;
     color: #1abc9c;
 }
-
 .social-icons a {
     display: inline-block;
     color: #ecf0f1;
@@ -316,12 +300,10 @@ body {
     margin-right: 10px;
     transition: background-color 0.3s ease;
 }
-
 .social-icons a:hover {
     background-color: #FDC82F;
     color: #fff;
 }
-
 .footer-bottom {
     text-align: center;
     padding-top: 20px;
@@ -344,8 +326,28 @@ body {
 }
 
 @media (max-width: 992px) {
+    /* Ocultamos el menú de escritorio y el espaciador del dropdown */
+    .gnb-wrap, .desktop-spacer {
+        display: none;
+    }
+
+    /* Mostramos y damos estilo a los enlaces principales del menú móvil */
+    .mobile-main-link {
+        display: block;
+        font-family: 'Klavika', sans-serif;
+        font-size: 24px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Transformamos el menú desplegable en una superposición de pantalla completa */
     #dropdown-menu {
         position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.95);
@@ -356,30 +358,32 @@ body {
         text-align: center;
         overflow-y: auto;
         z-index: 2000;
+        /* CORRECCIÓN: Sobrescribimos el max-height para que el menú sea visible */
+        max-height: 100vh;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
     }
+
+    #dropdown-menu.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
     .gnb-wrap-mirror { padding: 20px; }
     .gnb-menu-list-mirror { flex-direction: column; align-items: center; }
-    .gnb-menu-list-mirror > li { padding: 0; width: 100%; margin-bottom: 25px; }
-    
-    .main-menu-link {
-        font-family: 'Klavika', sans-serif;
-        font-size: 24px;
-        color: #fff;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        display: block;
-    }
+    .gnb-menu-list-mirror > li { width: 100%; margin-bottom: 30px; }
 
-    /* ESTE ES EL CAMBIO - SOBREESCRIBE EL COLOR DEL DIVISOR PARA EL MÓVIL */
+    /* Ajustamos el submenú en móvil */
     #dropdown-menu .sub-menu {
-        border-top-color: rgba(255, 255, 255, 0.2); /* Color más claro para el fondo oscuro */
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0;
     }
-
+    
     #dropdown-menu .sub-menu li a {
         font-size: 16px;
         color: #ccc;
+        padding: 8px 0;
     }
-    #dropdown-menu .sub-menu li a:hover { color: #FDC82F; }
 
     #dropdown-menu::before {
         content: '×';
@@ -393,66 +397,20 @@ body {
 }
 
 @media (max-width: 768px) {
-    .gnb-wrap {
-        display: none;
-    }
-    .page-title-sec .title-main {
-        font-size: 36px;
-    }
-    .tab-list {
-        flex-wrap: wrap;
-    }
-    .tab-list a {
-        padding: 15px 20px;
-    }
-    .tab-panel-content {
-        flex-direction: column;
-        gap: 30px;
-    }
-    .footer-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .footer-column {
-        margin: 20px 0;
-    }
+    .page-title-sec .title-main { font-size: 36px; }
+    .tab-list { flex-wrap: wrap; }
+    .tab-list a { padding: 15px 20px; }
+    .tab-panel-content { flex-direction: column; gap: 30px; }
+    .footer-container { flex-direction: column; align-items: center; text-align: center; }
+    .footer-column { margin: 20px 0; }
 }
 
 @media (max-width: 480px) {
-    .header-content {
-        padding: 15px;
-    }
-    .logo-wrap img {
-        height: 30px;
-    }
-    .page-title-sec .title-main {
-        font-size: 28px;
-    }
-    .page-title-sec .title-main-sub {
-        font-size: 14px;
-    }
-    .tab-list a {
-        padding: 10px 15px;
-        font-size: 14px;
-    }
-    .contents {
-        padding: 40px 0;
-    }
-    .tab-panel h3 {
-        font-size: 24px;
-    }
-    .tab-panel p {
-        font-size: 16px;
-    }
-}
-/* ================================================ */
-/* OCULTAR TÍTULOS DEL MENÚ MÓVIL EN ESCRITORIO     */
-/* ================================================ */
-
-/* Se aplica solo a pantallas de 993px o más */
-@media (min-width: 993px) {
-    .mobile-main-link {
-        display: none;
-    }
+    .header-content { padding: 15px; }
+    .logo-wrap img { height: 30px; }
+    .page-title-sec .title-main { font-size: 28px; }
+    .page-title-sec .title-main-sub { font-size: 14px; }
+    .tab-list a { padding: 10px 15px; font-size: 14px; }
+    .tab-panel h3 { font-size: 24px; }
+    .tab-panel p { font-size: 16px; }
 }
