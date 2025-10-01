@@ -52,12 +52,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Cierra con clic fuera (importante para que el botón de cierre "X" en móvil funcione)
-    document.addEventListener('click', function(e) {
-        if (menuContainer && menuContainer.classList.contains('visible') && !header.contains(e.target)) {
-            hideDropdown();
-        }
-    });
+    // --- CÓDIGO CORREGIDO ---
+    // Cierra el menú si se hace clic en el fondo/overlay (así funciona la "X" en móvil)
+    if (menuContainer) {
+        menuContainer.addEventListener('click', function(e) {
+            // Si el clic es directamente en el contenedor del menú (el overlay)
+            // y no en un elemento hijo como un enlace, se cierra.
+            // Esto funciona para el pseudo-elemento 'X' porque el target es el contenedor.
+            if (e.target === menuContainer) {
+                hideDropdown();
+            }
+        });
+    }
 
 
     // --- SECCIÓN 2: LÓGICA DE LAS PESTAÑAS (sin cambios) ---

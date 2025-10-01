@@ -343,7 +343,7 @@ body {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
     
-    /* Transformamos el menú desplegable en una superposición de pantalla completa */
+    /* --- CORRECCIÓN APLICADA AQUÍ --- */
     #dropdown-menu {
         position: fixed;
         top: 0;
@@ -353,12 +353,12 @@ body {
         background-color: rgba(0, 0, 0, 0.95);
         backdrop-filter: blur(10px);
         display: flex;
-        align-items: center;
+        align-items: flex-start; /* Corregido para alinear arriba */
+        padding-top: 100px;      /* Añadido para dar espacio superior */
         justify-content: center;
         text-align: center;
         overflow-y: auto;
         z-index: 2000;
-        /* CORRECCIÓN: Sobrescribimos el max-height para que el menú sea visible */
         max-height: 100vh;
         transition: opacity 0.4s ease, visibility 0.4s ease;
     }
