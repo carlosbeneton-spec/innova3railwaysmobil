@@ -127,3 +127,82 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LLAMAR A LA FUNCIÓN AL CARGAR LA PÁGINA ---
     activateTabFromHash();
 });
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- SECCIÓN 1: LÓGICA DEL MENÚ DESPLEGABLE ---
+    const menuContainer = document.getElementById('dropdown-menu');
+    const menuButton = document.querySelector('.bttn-all-menu');
+
+    // Función para abrir/cerrar el menú
+    function toggleMenu() {
+        if (menuContainer) {
+            menuContainer.classList.toggle('visible');
+        }
+    }
+
+    // Asignar el evento de clic SOLAMENTE al botón "MENU"
+    if (menuButton) {
+        menuButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+        });
+    }
+
+    // Cerrar el menú si se hace clic fuera del header
+    document.addEventListener('click', function(e) {
+        if (menuContainer && menuContainer.classList.contains('visible') && !e.target.closest('#header')) {
+            toggleMenu();
+        }
+    });
+
+
+    // --- SECCIÓN 2: LÓGICA DE LAS PESTAÑAS ---
+    const tabSection = document.querySelector('.page-tab-section');
+    const tabLinks = document.querySelectorAll('.tab-list a');
+
+    // Función para cambiar de pestaña
+    function switchTab(link) {
+        const targetPanelId = link.getAttribute('href');
+        const targetPanel = document.querySelector(targetPanelId);
+
+        if (targetPanel) {
+            document.querySelectorAll('.tab-list li.active').forEach(item => item.classList.remove('active'));
+            document.querySelectorAll('.tab-panel.active').forEach(item => item.classList.remove('active'));
+            
+            link.parentElement.classList.add('active');
+            targetPanel.classList.add('active');
+
+            if (tabSection) {
+                tabSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
+    // Asignar el evento de clic a cada enlace de pestaña
+    tabLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            switchTab(this);
+        });
+    });
+
+
+    // --- SECCIÓN 3: ACTIVAR PESTAÑA DESDE UN ENLACE EXTERNO ---
+    function activateTabFromHash() {
+        const hash = window.location.hash;
+        
+        if (hash) {
+            const targetLink = document.querySelector(`.tab-list a[href="${hash}"]`);
+            if (targetLink) {
+                setTimeout(() => {
+                    switchTab(targetLink);
+                }, 100);
+            }
+        }
+    }
+
+    // Ejecutar la función al cargar la página
+    activateTabFromHash();
+
+});
