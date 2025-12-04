@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Si la página actual *SÍ* tiene el sufijo -es (es ESPAÑOL)
             if (currentFile.endsWith('-es.html')) {
                 // Redirige a la versión en INGLÉS (ej: about-us-es.html -> about-us.html)
-                newFile = currentFile.replace('es.html', '.html');
+                newFile = currentFile.replace('-es.html', '.html');
             } 
             // Si la página actual *NO* tiene el sufijo -es (es INGLÉS/Default)
             else if (currentFile.endsWith('.html')) {
