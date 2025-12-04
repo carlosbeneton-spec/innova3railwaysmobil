@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.getElementById('header');
     const menuContainer = document.getElementById('dropdown-menu');
     const menuButton = document.querySelector('.bttn-all-menu');
-    
-    // Obtenemos los enlaces del menú de escritorio para la función hover
     const desktopMenuTriggers = document.querySelectorAll('.gnb-menu-list > li > a');
 
     function showDropdown() {
@@ -30,20 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
             menuContainer.classList.contains('visible') ? hideDropdown() : showDropdown();
         });
     }
-    
+
     // Lógica de HOVER para escritorio
     desktopMenuTriggers.forEach(trigger => {
-        // Excluimos 'HOME' de abrir el menú con hover
         if (trigger.textContent.trim().toUpperCase() === 'HOME') {
             return;
         }
         trigger.addEventListener('mouseover', function() {
-            if (window.innerWidth > 992) { // Revisa que sea una pantalla de computadora
+            if (window.innerWidth > 992) {
                 showDropdown();
             }
         });
     });
-    
+
     // Cierra el menú cuando el ratón sale del header (solo en computadora)
     if (header) {
         header.addEventListener('mouseleave', function() {
@@ -56,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Cierra el menú si se hace clic en el fondo/overlay o en un enlace
     if (menuContainer) {
         menuContainer.addEventListener('click', function(e) {
-            // Si el clic es directamente en el contenedor o en un enlace (A)
             if (e.target.tagName === 'A' || e.target === menuContainer) {
-                // Pequeño retraso para permitir la navegación antes de cerrar
                 setTimeout(hideDropdown, 150); 
             }
         });
@@ -109,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     // =================================================================
-    // 3. LÓGICA DE CAMBIO DE IDIOMA (Simple y Robusta con -es)
+    // 3. LÓGICA DE CAMBIO DE IDIOMA (Corregida para URLs Limpias/Live)
     // =================================================================
     const langButton = document.querySelector('.bttn-lang-sel');
 
@@ -117,32 +112,43 @@ document.addEventListener('DOMContentLoaded', function() {
         langButton.addEventListener('click', function(e) {
             e.preventDefault(); 
 
-            // Extrae el nombre del archivo de la URL
-            const pathParts = window.location.pathname.split('/');
-            let currentFile = pathParts[pathParts.length - 1];
+            // Obtiene la RUTA COMPLETA (ej: '/index-es' o '/about-us-es.html')
+            const currentPath = window.location.pathname;
+            let newPath = '';
+
+            // 1. Detección de Idioma (Busca si la ruta CONTIENE el sufijo '-es')
+            const isSpanish = currentPath.includes('-es'); 
             
-            // Maneja el caso de la raíz (si la URL es solo /)
-            if (currentFile === '' || currentFile.endsWith('/')) {
-                currentFile = 'index.html'; 
+            if (isSpanish) {
+                // SPANISH -> ENGLISH (Quita el sufijo '-es')
+                newPath = currentPath.replace('-es', ''); 
+                
+                // Si al quitar '-es', la ruta queda en '/' (la página principal)
+                if (newPath === '/') {
+                    // Mantiene '/', el servidor debe manejarlo como index.html
+                    newPath = '/'; 
+                }
+            } else {
+                // ENGLISH -> SPANISH (Añade el sufijo '-es')
+                
+                // Si la URL es la raíz ('/')
+                if (currentPath === '/') {
+                    newPath = '/index-es'; // Redirige directamente a la URL limpia de inicio
+                }
+                // Si la URL tiene extensión (.html) -> Añade -es antes de .html (Local)
+                else if (currentPath.endsWith('.html')) {
+                    newPath = currentPath.replace('.html', '-es.html');
+                }
+                // Si es una URL limpia sin extensión (Live)
+                else {
+                    newPath = currentPath + '-es';
+                }
             }
             
-            let newFile = '';
-
-            // Si la página actual es la versión ESPAÑOLA (tiene el sufijo -es)
-            if (currentFile.endsWith('-es.html')) {
-                // SPANISH -> ENGLISH: Quita el sufijo '-es' (Ej: about-us-es.html -> about-us.html)
-                newFile = currentFile.replace('-es.html', '.html');
-            } 
-            // Si la página actual es la versión INGLESA (no tiene el sufijo)
-            else {
-                // ENGLISH -> SPANISH: Agrega el sufijo '-es' (Ej: about-us.html -> about-us-es.html)
-                newFile = currentFile.replace('.html', '-es.html');
-            }
-
-            // Redirige
-            if (newFile) {
-                // Usamos replace para evitar problemas de caché y de historial de navegación en Chrome.
-                window.location.replace(newFile); 
+            // 2. Redirige.
+            if (newPath) {
+                // window.location.replace() es más seguro para evitar problemas de caché en Chrome.
+                window.location.replace(newPath); 
             }
         });
     }
