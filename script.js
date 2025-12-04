@@ -94,43 +94,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-const langButton = document.querySelector('.bttn-lang-sel');
-
-if (langButton) {
-    langButton.addEventListener('click', function(e) {
-        // Previene la acción por defecto, nos da control total sobre la navegación
-        e.preventDefault(); 
-
-        // 1. EXTRAE EL NOMBRE DEL ARCHIVO DE LA URL (método robusto)
-        const pathParts = window.location.pathname.split('/');
-        let currentFile = pathParts[pathParts.length - 1];
-        
-        // Maneja el caso de la raíz (ej: la URL termina en /)
-        if (currentFile === '' || currentFile.endsWith('/')) {
-            currentFile = 'index.html'; 
+    // --- SECCIÓN 3: ACTIVAR PESTAÑA DESDE URL (sin cambios) ---
+    function activateTabFromHash() {
+        const hash = window.location.hash;
+        if (hash) {
+            const targetLink = document.querySelector(`.tab-list a[href="${hash}"]`);
+            if (targetLink) {
+                setTimeout(() => { switchTab(targetLink); }, 100);
+            }
         }
-        
-        let newFile = '';
+    }
+    activateTabFromHash();
+});
+// Lógica universal para el botón de cambio de idioma en cualquier página
+    const langButton = document.querySelector('.bttn-lang-sel');
+    
+    if (langButton) {
+        langButton.addEventListener('click', function() {
+            // 1. Obtiene el nombre del archivo actual (ej: 'index.html', 'about-us-es.html')
+            const currentPath = window.location.pathname;
+            // Maneja el caso en que la URL termine en "/" (asumiendo que es index.html)
+            let currentFile = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html'; 
+            let newFile = '';
 
-        // 2. LÓGICA DE REEMPLAZO SIMPLE Y CONSISTENTE (Funciona con el sufijo -es)
-        
-        // Si la página actual es la versión ESPAÑOLA (tiene el sufijo -es)
-        if (currentFile.endsWith('-es.html')) {
-            // SPANISH -> ENGLISH: Quita el sufijo '-es'
-            newFile = currentFile.replace('-es.html', '.html');
-        } 
-        // Si la página actual es la versión INGLESA (no tiene el sufijo)
-        else {
-            // ENGLISH -> SPANISH: Agrega el sufijo '-es'
-            newFile = currentFile.replace('.html', '-es.html');
-        }
+            // Si la página actual *SÍ* tiene el sufijo -es (es ESPAÑOL)
+            if (currentFile.endsWith('-es.html')) {
+                // Redirige a la versión en INGLÉS (ej: about-us-es.html -> about-us.html)
+                newFile = currentFile.replace('es.html', '.html');
+            } 
+            // Si la página actual *NO* tiene el sufijo -es (es INGLÉS/Default)
+            else if (currentFile.endsWith('.html')) {
+                // Redirige a la versión en ESPAÑOL (ej: about-us.html -> about-us-es.html)
+                newFile = currentFile.replace('.html', '-es.html');
+            }
 
-        // 3. REDIRIGE
-        if (newFile) {
-            // Usamos window.location.replace() en lugar de window.location.href. 
-            // Esto es más seguro porque reemplaza la entrada actual en el historial, 
-            // lo que ayuda a evitar problemas de caché en Chrome.
-            window.location.replace(newFile); 
-        }
-    });
-}
+            // 2. Redirige a la nueva URL
+            if (newFile) {
+                window.location.href = newFile;
+            }
+        });
+    }
