@@ -1,38 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- SECCIÓN 1: LÓGICA DE MENÚS (UNIFICADA Y CORREGIDA) ---
+    // =================================================================
+    // 1. LÓGICA DEL MENÚ DESPLEGABLE (Dropdown Menu) Y EL BOTÓN 'MENÚ'
+    // =================================================================
     const header = document.getElementById('header');
     const menuContainer = document.getElementById('dropdown-menu');
     const menuButton = document.querySelector('.bttn-all-menu');
+    
+    // Obtenemos los enlaces del menú de escritorio para la función hover
     const desktopMenuTriggers = document.querySelectorAll('.gnb-menu-list > li > a');
 
-    // Función para MOSTRAR el menú desplegable
     function showDropdown() {
-        if (menuContainer && !menuContainer.classList.contains('visible')) {
+        if (menuContainer) {
             menuContainer.classList.add('visible');
         }
     }
 
-    // Función para OCULTAR el menú desplegable
     function hideDropdown() {
-        if (menuContainer && menuContainer.classList.contains('visible')) {
+        if (menuContainer) {
             menuContainer.classList.remove('visible');
         }
     }
     
-    // -- Lógica para el botón "MENU" (funciona con clic en TODAS las pantallas) --
+    // Toggle del menú al hacer clic en 'MENÚ'
     if (menuButton) {
         menuButton.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
-            // Simplemente alterna la visibilidad del menú
             menuContainer.classList.contains('visible') ? hideDropdown() : showDropdown();
         });
     }
-
-    // -- Lógica de HOVER (solo para computadora) --
+    
+    // Lógica de HOVER para escritorio
     desktopMenuTriggers.forEach(trigger => {
-        // Excluye 'HOME' de abrir el menú con hover
+        // Excluimos 'HOME' de abrir el menú con hover
         if (trigger.textContent.trim().toUpperCase() === 'HOME') {
             return;
         }
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
     // Cierra el menú cuando el ratón sale del header (solo en computadora)
     if (header) {
         header.addEventListener('mouseleave', function() {
@@ -52,21 +53,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- CÓDIGO CORREGIDO ---
-    // Cierra el menú si se hace clic en el fondo/overlay (así funciona la "X" en móvil)
+    // Cierra el menú si se hace clic en el fondo/overlay o en un enlace
     if (menuContainer) {
         menuContainer.addEventListener('click', function(e) {
-            // Si el clic es directamente en el contenedor del menú (el overlay)
-            // y no en un elemento hijo como un enlace, se cierra.
-            // Esto funciona para el pseudo-elemento 'X' porque el target es el contenedor.
-            if (e.target === menuContainer) {
-                hideDropdown();
+            // Si el clic es directamente en el contenedor o en un enlace (A)
+            if (e.target.tagName === 'A' || e.target === menuContainer) {
+                // Pequeño retraso para permitir la navegación antes de cerrar
+                setTimeout(hideDropdown, 150); 
             }
         });
     }
 
 
-    // --- SECCIÓN 2: LÓGICA DE LAS PESTAÑAS (sin cambios) ---
+    // =================================================================
+    // 2. LÓGICA DEL CAMBIO DE PESTAÑAS (Tabs)
+    // =================================================================
     const tabSection = document.querySelector('.page-tab-section');
     const tabLinks = document.querySelectorAll('.tab-list a');
 
@@ -94,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- SECCIÓN 3: ACTIVAR PESTAÑA DESDE URL (sin cambios) ---
+    // Activa la pestaña inicial basada en el hash de la URL (si existe)
     function activateTabFromHash() {
         const hash = window.location.hash;
         if (hash) {
@@ -105,32 +106,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     activateTabFromHash();
-});
-// Lógica universal para el botón de cambio de idioma en cualquier página
+
+
+    // =================================================================
+    // 3. LÓGICA DE CAMBIO DE IDIOMA (Simple y Robusta con -es)
+    // =================================================================
     const langButton = document.querySelector('.bttn-lang-sel');
-    
+
     if (langButton) {
-        langButton.addEventListener('click', function() {
-            // 1. Obtiene el nombre del archivo actual (ej: 'index.html', 'about-us-es.html')
-            const currentPath = window.location.pathname;
-            // Maneja el caso en que la URL termine en "/" (asumiendo que es index.html)
-            let currentFile = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html'; 
+        langButton.addEventListener('click', function(e) {
+            e.preventDefault(); 
+
+            // Extrae el nombre del archivo de la URL
+            const pathParts = window.location.pathname.split('/');
+            let currentFile = pathParts[pathParts.length - 1];
+            
+            // Maneja el caso de la raíz (si la URL es solo /)
+            if (currentFile === '' || currentFile.endsWith('/')) {
+                currentFile = 'index.html'; 
+            }
+            
             let newFile = '';
 
-            // Si la página actual *SÍ* tiene el sufijo -es (es ESPAÑOL)
+            // Si la página actual es la versión ESPAÑOLA (tiene el sufijo -es)
             if (currentFile.endsWith('-es.html')) {
-                // Redirige a la versión en INGLÉS (ej: about-us-es.html -> about-us.html)
+                // SPANISH -> ENGLISH: Quita el sufijo '-es' (Ej: about-us-es.html -> about-us.html)
                 newFile = currentFile.replace('-es.html', '.html');
             } 
-            // Si la página actual *NO* tiene el sufijo -es (es INGLÉS/Default)
-            else if (currentFile.endsWith('.html')) {
-                // Redirige a la versión en ESPAÑOL (ej: about-us.html -> about-us-es.html)
+            // Si la página actual es la versión INGLESA (no tiene el sufijo)
+            else {
+                // ENGLISH -> SPANISH: Agrega el sufijo '-es' (Ej: about-us.html -> about-us-es.html)
                 newFile = currentFile.replace('.html', '-es.html');
             }
 
-            // 2. Redirige a la nueva URL
+            // Redirige
             if (newFile) {
-                window.location.href = newFile;
+                // Usamos replace para evitar problemas de caché y de historial de navegación en Chrome.
+                window.location.replace(newFile); 
             }
         });
     }
+});
